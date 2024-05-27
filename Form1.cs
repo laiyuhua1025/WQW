@@ -117,5 +117,46 @@ namespace WindowsFormsApp3
                 MessageBox.Show("使用者取消了選擇檔案操作。", "訊息", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
             }
         }
+
+        private void btnUndo_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private Stack<string> textHistory = new Stack<string>();
+        private const int MaxHistoryCount = 10; 
+        private void rtbText_TextChanged(object sender, EventArgs e)
+        {
+        
+            
+            textHistory.Push(rtbText.Text);
+
+            
+            if (textHistory.Count > MaxHistoryCount)
+            {
+               
+                Stack<string> tempStack = new Stack<string>();
+                for (int i = 0; i < MaxHistoryCount; i++)
+                {
+                    tempStack.Push(textHistory.Pop());
+                }
+                textHistory.Clear(); 
+                foreach (string item in tempStack)
+                {
+                    textHistory.Push(item);
+                }
+            }
+            UpdateListBox();          
+        }
+        void UpdateListBox()
+        {
+            listUndo.Items.Clear(); 
+
+            
+            foreach (string item in textHistory)
+            {
+                listUndo.Items.Add(item);
+            }
+        }
+
     }
-}
+    }
