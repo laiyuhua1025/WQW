@@ -17,6 +17,8 @@ namespace WindowsFormsApp3
         {
             InitializeComponent();
         }
+        
+
 
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -117,32 +119,33 @@ namespace WindowsFormsApp3
                 MessageBox.Show("使用者取消了選擇檔案操作。", "訊息", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
             }
         }
+        private bool isUndoRedo = false;
+        private Stack<string> UndoStack = new Stack<string>();
+        private Stack<string> redoStack = new Stack<string>();
+        private const int MaxtHistoryCount = 10;
 
-        private void btnUndo_TextChanged(object sender, EventArgs e)
-        {
+        public int MaxHistoryCount { get; private set; }
 
-        }
-        private Stack<string> textHistory = new Stack<string>();
-        private const int MaxHistoryCount = 10; 
         private void rtbText_TextChanged(object sender, EventArgs e)
         {
-        
-            
-            textHistory.Push(rtbText.Text);
-
-            
-            if (textHistory.Count > MaxHistoryCount)
+            if (isUndoRedo == false)
+            {
+                UndoStack.Push(rtbText.Text);
+                redoStack.Clear();
+            }                     
+            if (UndoStack.Count > MaxHistoryCount)
             {
                
                 Stack<string> tempStack = new Stack<string>();
                 for (int i = 0; i < MaxHistoryCount; i++)
                 {
-                    tempStack.Push(textHistory.Pop());
+                    tempStack.Push(UndoStack.Pop());
                 }
-                textHistory.Clear(); 
+                UndoStack.Clear();
+                
                 foreach (string item in tempStack)
                 {
-                    textHistory.Push(item);
+                    UndoStack.Push(item);
                 }
             }
             UpdateListBox();          
@@ -152,11 +155,41 @@ namespace WindowsFormsApp3
             listUndo.Items.Clear(); 
 
             
-            foreach (string item in textHistory)
+            foreach (string item in UndoStack)
             {
                 listUndo.Items.Add(item);
             }
         }
+        
+        
+        private void btnRedo_Click(object sender, EventArgs e)
+            
+        {
+            if (redoStack.Count > 0)
+            {
 
+                isUndoRedo = true;
+                UndoStack.Push(redoStack.Pop());
+                rtbText.Text = UndoStack.Peek();
+                UpdateListBox();
+                isUndoRedo = false;
+
+            }
+
+        }
+
+        private void btnUndo_Click(object sender, EventArgs e)
+        {
+            if (UndoStack.Count > 1)
+            {
+
+                isUndoRedo = true;
+                redoStack.Push(UndoStack.Pop());
+                rtbText.Text = UndoStack.Peek();
+                UpdateListBox();
+                isUndoRedo = false;
+
+            }
+        }
     }
     }
