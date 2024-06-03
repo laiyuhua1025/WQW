@@ -91,10 +91,9 @@ namespace WindowsFormsApp3
             this.btnUndo.Name = "btnUndo";
             this.btnUndo.Size = new System.Drawing.Size(153, 33);
             this.btnUndo.TabIndex = 4;
-            this.btnUndo.Text = "恢復上一步";
+            this.btnUndo.Text = "復原上一步";
             this.btnUndo.UseVisualStyleBackColor = true;
             this.btnUndo.TextChanged += new System.EventHandler(this.btnUndo_TextChanged);
-            this.btnUndo.Click += new System.EventHandler(this.btnUndo_Click);
             // 
             // btnRedo
             // 
@@ -104,7 +103,6 @@ namespace WindowsFormsApp3
             this.btnRedo.TabIndex = 5;
             this.btnRedo.Text = "重作下一步";
             this.btnRedo.UseVisualStyleBackColor = true;
-            this.btnRedo.Click += new System.EventHandler(this.btnRedo_Click);
             // 
             // comboBoxFont
             // 
