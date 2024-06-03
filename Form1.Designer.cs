@@ -38,13 +38,16 @@ namespace WindowsFormsApp3
             this.listUndo = new System.Windows.Forms.ListBox();
             this.btnUndo = new System.Windows.Forms.Button();
             this.btnRedo = new System.Windows.Forms.Button();
+            this.comboBoxFont = new System.Windows.Forms.ComboBox();
+            this.comboBoxSize = new System.Windows.Forms.ComboBox();
+            this.comboBoxStyle = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(126, 12);
+            this.btnSave.Location = new System.Drawing.Point(584, 42);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(98, 33);
+            this.btnSave.Size = new System.Drawing.Size(153, 33);
             this.btnSave.TabIndex = 0;
             this.btnSave.Text = "存檔";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -52,9 +55,9 @@ namespace WindowsFormsApp3
             // 
             // btnOpen
             // 
-            this.btnOpen.Location = new System.Drawing.Point(12, 12);
+            this.btnOpen.Location = new System.Drawing.Point(584, 3);
             this.btnOpen.Name = "btnOpen";
-            this.btnOpen.Size = new System.Drawing.Size(108, 33);
+            this.btnOpen.Size = new System.Drawing.Size(153, 33);
             this.btnOpen.TabIndex = 1;
             this.btnOpen.Text = "開啟檔案";
             this.btnOpen.UseVisualStyleBackColor = true;
@@ -62,9 +65,9 @@ namespace WindowsFormsApp3
             // 
             // rtbText
             // 
-            this.rtbText.Location = new System.Drawing.Point(12, 51);
+            this.rtbText.Location = new System.Drawing.Point(12, 35);
             this.rtbText.Name = "rtbText";
-            this.rtbText.Size = new System.Drawing.Size(459, 398);
+            this.rtbText.Size = new System.Drawing.Size(566, 414);
             this.rtbText.TabIndex = 2;
             this.rtbText.Text = "";
             this.rtbText.TextChanged += new System.EventHandler(this.rtbText_TextChanged);
@@ -77,16 +80,16 @@ namespace WindowsFormsApp3
             // 
             this.listUndo.FormattingEnabled = true;
             this.listUndo.ItemHeight = 18;
-            this.listUndo.Location = new System.Drawing.Point(503, 51);
+            this.listUndo.Location = new System.Drawing.Point(584, 157);
             this.listUndo.Name = "listUndo";
-            this.listUndo.Size = new System.Drawing.Size(285, 400);
+            this.listUndo.Size = new System.Drawing.Size(153, 292);
             this.listUndo.TabIndex = 3;
             // 
             // btnUndo
             // 
-            this.btnUndo.Location = new System.Drawing.Point(230, 12);
+            this.btnUndo.Location = new System.Drawing.Point(584, 81);
             this.btnUndo.Name = "btnUndo";
-            this.btnUndo.Size = new System.Drawing.Size(122, 33);
+            this.btnUndo.Size = new System.Drawing.Size(153, 33);
             this.btnUndo.TabIndex = 4;
             this.btnUndo.Text = "恢復上一步";
             this.btnUndo.UseVisualStyleBackColor = true;
@@ -95,19 +98,49 @@ namespace WindowsFormsApp3
             // 
             // btnRedo
             // 
-            this.btnRedo.Location = new System.Drawing.Point(358, 12);
+            this.btnRedo.Location = new System.Drawing.Point(584, 120);
             this.btnRedo.Name = "btnRedo";
-            this.btnRedo.Size = new System.Drawing.Size(113, 33);
+            this.btnRedo.Size = new System.Drawing.Size(153, 33);
             this.btnRedo.TabIndex = 5;
             this.btnRedo.Text = "重作下一步";
             this.btnRedo.UseVisualStyleBackColor = true;
             this.btnRedo.Click += new System.EventHandler(this.btnRedo_Click);
+            // 
+            // comboBoxFont
+            // 
+            this.comboBoxFont.FormattingEnabled = true;
+            this.comboBoxFont.Location = new System.Drawing.Point(12, 3);
+            this.comboBoxFont.Name = "comboBoxFont";
+            this.comboBoxFont.Size = new System.Drawing.Size(121, 26);
+            this.comboBoxFont.TabIndex = 6;
+            this.comboBoxFont.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // comboBoxSize
+            // 
+            this.comboBoxSize.FormattingEnabled = true;
+            this.comboBoxSize.Location = new System.Drawing.Point(148, 3);
+            this.comboBoxSize.Name = "comboBoxSize";
+            this.comboBoxSize.Size = new System.Drawing.Size(121, 26);
+            this.comboBoxSize.TabIndex = 7;
+            this.comboBoxSize.SelectedIndexChanged += new System.EventHandler(this.comboBoxSize_SelectedIndexChanged);
+            // 
+            // comboBoxStyle
+            // 
+            this.comboBoxStyle.FormattingEnabled = true;
+            this.comboBoxStyle.Location = new System.Drawing.Point(287, 3);
+            this.comboBoxStyle.Name = "comboBoxStyle";
+            this.comboBoxStyle.Size = new System.Drawing.Size(121, 26);
+            this.comboBoxStyle.TabIndex = 8;
+            this.comboBoxStyle.SelectedIndexChanged += new System.EventHandler(this.comboBoxStyle_SelectedIndexChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.comboBoxStyle);
+            this.Controls.Add(this.comboBoxSize);
+            this.Controls.Add(this.comboBoxFont);
             this.Controls.Add(this.btnRedo);
             this.Controls.Add(this.btnUndo);
             this.Controls.Add(this.listUndo);
@@ -115,7 +148,6 @@ namespace WindowsFormsApp3
             this.Controls.Add(this.btnOpen);
             this.Controls.Add(this.btnSave);
             this.Name = "Form1";
-            this.Text = "呂老師好帥";
             this.ResumeLayout(false);
 
         }
@@ -135,6 +167,9 @@ namespace WindowsFormsApp3
         private System.Windows.Forms.ListBox listUndo;
         private System.Windows.Forms.Button btnUndo;
         private System.Windows.Forms.Button btnRedo;
+        private System.Windows.Forms.ComboBox comboBoxFont;
+        private System.Windows.Forms.ComboBox comboBoxSize;
+        private System.Windows.Forms.ComboBox comboBoxStyle;
     }
 }
 
